@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>magmact-parser</artifactId>
+    <artifactId>glacier-parser</artifactId>
     <version>1.0</version>
 
     <build>
@@ -21,7 +21,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>magmact-parser</finalName> <!-- generated jar file name -->
+                    <finalName>glacier-parser</finalName> <!-- generated jar file name -->
                     <appendAssemblyId>false</appendAssemblyId> <!-- Removes the jar-with-dependencies suffix -->
                 </configuration>
             </plugin>
