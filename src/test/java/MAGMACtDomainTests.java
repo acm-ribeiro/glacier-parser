@@ -57,7 +57,6 @@ public class MAGMACtDomainTests {
         assertEquals(expected, actual);
     }
 
-
     @Test
     public void test_getPreviousRequest_response() {
         Formula f = getFormula("previous(response_body(GET /resources/{resource_id})) == 2");
@@ -103,8 +102,6 @@ public class MAGMACtDomainTests {
         assertEquals("true", f3.toString());
         assertEquals("false", f4.toString());
     }
-
-
 
     /**
      * Parser initialisation. Returns a parsed formula.
