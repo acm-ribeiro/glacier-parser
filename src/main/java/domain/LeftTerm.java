@@ -101,6 +101,10 @@ public class LeftTerm implements Serializable {
         }
     }
 
+    public Param getParam() {
+        return param;
+    }
+
     public boolean isParam() {
         return param != null;
     }
