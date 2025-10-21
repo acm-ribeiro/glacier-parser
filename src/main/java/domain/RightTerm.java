@@ -75,6 +75,15 @@ public class RightTerm implements Serializable {
         return leftTerm != null;
     }
 
+    public boolean hasStringParameter() {
+        return leftTerm != null && leftTerm.hasStringParameter();
+    }
+
+    public void setParam(String name, String value) {
+        if(leftTerm != null && leftTerm.hasStringParameter())
+            leftTerm.setParam(name, value);
+    }
+
     @Override
     public String toString() {
         if (responseCode != -1)

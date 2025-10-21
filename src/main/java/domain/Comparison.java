@@ -50,6 +50,10 @@ public class Comparison implements Serializable {
 		return comparator;
 	}
 
+	public Url getLeftUrl() {
+		return left.getUrl();
+	}
+
 	public String getQueryParameterName() {
 		return left.getQueryParameterName() != null? left.getQueryParameterName() : right.getQueryParameterName();
 	}
@@ -62,11 +66,9 @@ public class Comparison implements Serializable {
 		return left.hasPathParameter() || right.hasPathParameter();
 	}
 
-
 	public boolean hasQueryParameter() {
 		return left.hasQueryParameter() || right.hasQueryParameter();
 	}
-
 
 	public boolean hasThis() {
 		return left.hasThis() || right.hasThis();
@@ -85,6 +87,14 @@ public class Comparison implements Serializable {
 
 		// something went terribly wrong
 		return null;
+	}
+
+	public void setStringParameter(String name, String value) {
+		// this is false
+		if (left.hasStringParameter())
+			left.setParam(name, value);
+		else if(right.hasStringParameter())
+			right.setParam(name, value);
 	}
 
 	public boolean hasComposedParameters() {

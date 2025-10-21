@@ -17,6 +17,11 @@ public class Clause implements Serializable {
 		this.comparison = comparison;
 	}
 
+	public void setStringParameter(String name, String value) {
+		if (comparison != null)
+			comparison.setStringParameter(name, value);
+	}
+
 
 	public BooleanValue getBooleanValue() {
 		return value;

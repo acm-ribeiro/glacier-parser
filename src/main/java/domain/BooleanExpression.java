@@ -48,6 +48,11 @@ public class BooleanExpression implements Serializable {
 		return op;
 	}
 
+	public void setStringParameter(String name, String value) {
+		if (clause != null)
+			clause.setStringParameter(name, value);
+	}
+
 	public String getQueryParameterName() {
 		if (clause != null)
 			return clause.getQueryParameterName();

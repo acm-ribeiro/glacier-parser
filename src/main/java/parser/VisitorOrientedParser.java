@@ -180,9 +180,12 @@ public class VisitorOrientedParser {
                 CallVisitor callVisitor = new CallVisitor();
                 Call call = ctx.call() != null ? ctx.call().accept(callVisitor) : null;
 
+                ParamVisitor paramVisitor = new ParamVisitor();
+                Param param = ctx.param() != null ? ctx.param().accept(paramVisitor) : null;
+
                 boolean hasCurls = ctx.LCURL() != null && ctx.RCURL() != null;
 
-                return new LeftTerm(call, hasCurls);
+                return new LeftTerm(call, param, hasCurls);
             }
         }
 

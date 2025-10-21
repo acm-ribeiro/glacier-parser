@@ -27,34 +27,34 @@ public class DomainTests {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void test_set_collection_url_parameter_value() {
-//        Formula f = getFormula("for a in response_body(GET /as) : exists b in response_body(GET /as/{a.id}/bs) :- " +
-//                "request_body(this){name} != {b.name}");
-//
-//        QuantifiedFormula quantifiedFormula = f.getQuantifiedFormula();
-//        quantifiedFormula.setCollectionUrlParameterValue("id", "1");
-//
-//        String expected = "for a in response_body(GET /as) : exists b in response_body(GET /as/1/bs) :- " +
-//                "request_body(this){name} != {b.name}";
-//        String actual = quantifiedFormula.toString();
-//
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    public void test_set_collection_url_parameter_value() {
+        Formula f = getFormula("for a in response_body(GET /as) : exists b in response_body(GET /as/{a.id}/bs) :- " +
+                "request_body(this){name} != {b.name}");
+
+        QuantifiedFormula quantifiedFormula = f.getQuantifiedFormula();
+        quantifiedFormula.setCollectionUrlParameterValue("id", "1");
+
+        String expected = "for a in response_body(GET /as) : exists b in response_body(GET /as/1/bs) :- " +
+                "request_body(this){name} != {b.name}";
+        String actual = quantifiedFormula.toString();
+
+        assertEquals(expected, actual);
+    }
 
 
-//    @Test
-//    public void test_boolean_expression_set_string_parameter() {
-//        Formula f = getFormula("request_body(this){name} != {b.name}");
-//
-//        BooleanExpression exp = f.getBooleanExpression();
-//        exp.setStringParameter("name", "resource_name");
-//
-//        String expected = "request_body(this){name} != resource_name";
-//        String actual = exp.toString();
-//
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    public void test_boolean_expression_set_string_parameter() {
+        Formula f = getFormula("request_body(this){name} != {b.name}");
+
+        BooleanExpression exp = f.getBooleanExpression();
+        exp.setStringParameter("name", "resource_name");
+
+        String expected = "request_body(this){name} != resource_name";
+        String actual = exp.toString();
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void test_getPreviousRequest_response() {
@@ -106,7 +106,7 @@ public class DomainTests {
     public void testParserMultipleParameters(){
         Formula f1 = getFormula("for e in response_body(GET /enrollments) :- response_code(GET /players/{pid}/tournaments/{e.tid}) == 404");
 
-        Url url = f1.getQuantifiedFormula().getBooleanExpression().getClause().getComparison().getLeftTerm().getUrl();
+        Url url = f1.getQuantifiedFormula().getBooleanExpression().getClause().getComparison().getLeftUrl();
         List<String> params = url.getBlockParameters();
 
         List<String> values = new ArrayList<>();
