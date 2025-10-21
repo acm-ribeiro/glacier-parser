@@ -1,4 +1,4 @@
-package parser;// Generated from java-escape by ANTLR 4.11.1
+// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -138,7 +138,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitFormula(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitFormula(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -222,7 +222,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitQuantifiedFormula(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitQuantifiedFormula(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -289,7 +289,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitQuantifier(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitQuantifier(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -349,7 +349,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitVars(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitVars(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -418,7 +418,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitCall(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitCall(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -491,7 +491,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitBooleanExpression(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitBooleanExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -519,7 +519,7 @@ public class glacierParser extends Parser {
 			setState(107);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
-			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
@@ -575,7 +575,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitClause(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitClause(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -654,7 +654,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitComparison(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitComparison(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -708,7 +708,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitLeftTerm(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitLeftTerm(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -800,7 +800,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitRightTerm(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitRightTerm(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -874,7 +874,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitNoValue(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitNoValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -933,7 +933,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitOperationPrevious(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitOperationPrevious(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -998,7 +998,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitOperation(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitOperation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1088,7 +1088,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitOperationSuffix(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitOperationSuffix(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1149,7 +1149,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitOperationHeader(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitOperationHeader(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1206,7 +1206,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitPathParameter(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitPathParameter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1266,7 +1266,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitQueryParameter(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitQueryParameter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1324,7 +1324,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitOperationParameter(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitOperationParameter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1390,7 +1390,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitHttpRequest(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitHttpRequest(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1440,7 +1440,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitUrl(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitUrl(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1495,7 +1495,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitMethod(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitMethod(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1546,7 +1546,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitComparator(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitComparator(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1597,7 +1597,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitBooleanOperator(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitBooleanOperator(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1648,7 +1648,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitBooleanValue(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitBooleanValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1703,7 +1703,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitStringParam(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitStringParam(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1720,7 +1720,7 @@ public class glacierParser extends Parser {
 			setState(201);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
-			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
@@ -1768,7 +1768,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitParam(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitParam(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1832,7 +1832,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitSegment(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitSegment(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1903,7 +1903,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitBlock(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitBlock(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1986,7 +1986,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitBlockParameter(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitBlockParameter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2044,7 +2044,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitFunction(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitFunction(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2089,7 +2089,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitFunctionID(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitFunctionID(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2132,7 +2132,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitVarID(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitVarID(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2174,7 +2174,7 @@ public class glacierParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof glacierVisitor) return ((glacierVisitor<? extends T>)visitor).visitPreviousHeader(this);
+			if ( visitor instanceof glacierVisitor ) return ((glacierVisitor<? extends T>)visitor).visitPreviousHeader(this);
 			else return visitor.visitChildren(this);
 		}
 	}

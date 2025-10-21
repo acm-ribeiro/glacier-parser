@@ -44,11 +44,6 @@ public class BooleanExpression implements Serializable {
 		this.right = right;
 	}
 
-	public void setStringParameter(String name, String value) {
-		if (clause != null)
-			clause.setStringParameter(name, value);
-	}
-
 	public BooleanOperator getOperator() {
 		return op;
 	}
@@ -58,10 +53,6 @@ public class BooleanExpression implements Serializable {
 			return clause.getQueryParameterName();
 		else
 			return left.hasQueryParameterName()? left.getQueryParameterName() : right.getQueryParameterName();
-	}
-
-	public String getStringParameterName() {
-		return clause != null? clause.getStringParameterName() : null;
 	}
 
 	public boolean hasQueryParameterName() {

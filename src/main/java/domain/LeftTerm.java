@@ -10,12 +10,10 @@ public class LeftTerm implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Call call;
-    private Param param;
     private boolean hasCurls;
 
-    public LeftTerm(Call call, Param param, boolean hasCurls){
+    public LeftTerm(Call call, boolean hasCurls){
         this.call = call;
-        this.param = param;
         this.hasCurls = hasCurls;
     }
 
@@ -23,18 +21,12 @@ public class LeftTerm implements Serializable {
         return call;
     }
 
+    public Url getUrl() {
+        return call.getOperation().getParameter().getRequest().getUrl();
+    }
+
     public void setCall(Call call) {
         this.call = call;
-    }
-
-
-    public Param getParam() {
-        return param;
-    }
-
-
-    public boolean isParam() {
-        return param != null;
     }
 
     public boolean isCall() {
@@ -45,45 +37,12 @@ public class LeftTerm implements Serializable {
         return call != null && call.hasResponseBody();
     }
 
-
     public String getQueryParameterName() {
         return call.getQueryParameterName();
     }
 
-    public boolean hasStringParameter() {
-        return param != null && param.isStringParameter();
-    }
-
-    public String getStringParameterName() {
-        return param != null? param.getStringParameterName() : null;
-    }
-
     public int getPathParameterIndex() {
         return call.getPathParameterIndex();
-    }
-
-
-    /**
-     * Updates the parameter with the given name.
-     * @param name   the name of the parameter to be replaced. In case it is a path parameter replacement, provide the empty string "".
-     * @param value  the correct parameter value.
-     */
-    public void setParam(String name, String value) {
-        if(param != null && param.isStringParameter() && param.getStringParam().getParam().contains(name)) {
-            param = new Param(new StringParam(value), null);
-            call = null;
-            hasCurls = false;
-        }
-    }
-
-    /**
-     * Replaces a call (path_param, query_param, etc.) for a string parameter.
-     * @param value the correct parameter value.
-     */
-    public void replaceCallForParameter(String value) {
-        param = new Param(new StringParam(value), null);
-        call = null;
-        hasCurls = false;
     }
 
     public boolean hasPathParameter() {
@@ -116,11 +75,6 @@ public class LeftTerm implements Serializable {
 
     @Override
     public String toString() {
-        if(param != null)
-            return hasCurls? "{" + param + "}" : param.toString();
-        else if (call != null)
-            return call.toString();
-        else
-            return "";
+        return call != null? call.toString() : "";
     }
 }

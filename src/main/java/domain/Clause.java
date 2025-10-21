@@ -30,15 +30,6 @@ public class Clause implements Serializable {
 		return comparison.getQueryParameterName();
 	}
 
-	public String getStringParameterName() {
-		return comparison != null? comparison.getStringParameterName() : null;
-	}
-
-	public void setStringParameter(String name, String value) {
-		if (comparison != null)
-			comparison.setStringParameter(name, value);
-	}
-
 	public boolean isComparison() {
 		return comparison != null;
 	}

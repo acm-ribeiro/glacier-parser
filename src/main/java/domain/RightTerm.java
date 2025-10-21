@@ -10,12 +10,17 @@ public class RightTerm implements Serializable {
 
     private LeftTerm leftTerm;
     private String noValue;
+    private int responseCode;
 
-    public RightTerm(LeftTerm left, String noValue){
+    public RightTerm(LeftTerm left, String noValue, int responseCode) {
         this.leftTerm = left;
         this.noValue = noValue;
+        this.responseCode = responseCode;
     }
 
+    public int getResponseCode() {
+        return responseCode;
+    }
 
     public String getNoValue() {
         return noValue;
@@ -29,21 +34,8 @@ public class RightTerm implements Serializable {
         leftTerm = t;
     }
 
-    public void setParam(String name, String value) {
-        if(leftTerm != null && leftTerm.hasStringParameter())
-            leftTerm.setParam(name, value);
-    }
-
     public String getQueryParameterName() {
         return leftTerm != null? leftTerm.getQueryParameterName() : null;
-    }
-
-    public String getStringParameterName() {
-        return leftTerm != null? leftTerm.getStringParameterName() : null;
-    }
-
-    public boolean hasStringParameter() {
-        return leftTerm != null && leftTerm.hasStringParameter();
     }
 
     public boolean hasPathParameter() {
@@ -85,6 +77,9 @@ public class RightTerm implements Serializable {
 
     @Override
     public String toString() {
-        return leftTerm != null? leftTerm.toString() : noValue;
+        if (responseCode != -1)
+            return String.valueOf(responseCode);
+        else
+            return leftTerm != null? leftTerm.toString() : noValue;
     }
 }

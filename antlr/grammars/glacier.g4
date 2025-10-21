@@ -1,4 +1,4 @@
-grammar magmact;
+grammar glacier;
 
 formula
 	: quantifiedFormula
@@ -45,8 +45,9 @@ leftTerm
 	;
 
 rightTerm
-	: leftTerm
+	: RESPONSE_CODE
 	| noValue
+	| leftTerm
 	;
 
 noValue
@@ -127,6 +128,10 @@ booleanValue
 	| 'true'
 	| 'false'
 	;
+
+RESPONSE_CODE
+    : [1-9][0-9][0-9]
+    ;
 
 stringParam
 	: STRING ('.' STRING)*

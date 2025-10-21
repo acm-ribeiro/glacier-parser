@@ -46,36 +46,17 @@ public class Comparison implements Serializable {
 		right.setLeft(t);
 	}
 
-	public void setStringParameter(String name, String value) {
-		// this is false
-		if (left.hasStringParameter())
-			left.setParam(name, value);
-		else if(right.hasStringParameter())
-			right.setParam(name, value);
-	}
-
-
 	public Comparator getComparator() {
 		return comparator;
 	}
-
 
 	public String getQueryParameterName() {
 		return left.getQueryParameterName() != null? left.getQueryParameterName() : right.getQueryParameterName();
 	}
 
-	public boolean hasStringParameter() {
-		return left.hasStringParameter() || right.hasStringParameter();
-	}
-
 	public boolean hasResponseBody() {
 		return left.hasResponseBody() || right.hasResponseBody();
 	}
-
-	public String getStringParameterName() {
-		return left.getStringParameterName() != null? left.getStringParameterName() : right.getStringParameterName();
-	}
-
 
 	public boolean hasPathParameter() {
 		return left.hasPathParameter() || right.hasPathParameter();

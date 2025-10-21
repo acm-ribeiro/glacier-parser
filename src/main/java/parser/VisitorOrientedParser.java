@@ -165,9 +165,11 @@ public class VisitorOrientedParser {
                 LeftTermVisitor leftTermVisitor = new LeftTermVisitor();
                 LeftTerm leftTerm = ctx.leftTerm() != null ? ctx.leftTerm().accept(leftTermVisitor) : null;
 
-                String noValue = ctx.getText();
+                String noValue = ctx.noValue() != null? ctx.noValue().getText() : null;
+                String code = ctx.RESPONSE_CODE() != null ? ctx.RESPONSE_CODE().getText() : null;
+                int responseCode = code != null ? Integer.parseInt(code) : -1;
 
-                return new RightTerm(leftTerm, noValue);
+                return new RightTerm(leftTerm, noValue, responseCode);
             }
         }
 
@@ -175,16 +177,12 @@ public class VisitorOrientedParser {
         public static class LeftTermVisitor extends glacierBaseVisitor<LeftTerm> {
             @Override
             public LeftTerm visitLeftTerm(@NotNull glacierParser.LeftTermContext ctx) {
-
                 CallVisitor callVisitor = new CallVisitor();
                 Call call = ctx.call() != null ? ctx.call().accept(callVisitor) : null;
 
-                ParamVisitor paramVisitor = new ParamVisitor();
-                Param param = ctx.param() != null ? ctx.param().accept(paramVisitor) : null;
-
                 boolean hasCurls = ctx.LCURL() != null && ctx.RCURL() != null;
 
-                return new LeftTerm(call, param, hasCurls);
+                return new LeftTerm(call, hasCurls);
             }
         }
 

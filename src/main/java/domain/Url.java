@@ -131,6 +131,17 @@ public class Url implements Serializable {
 					b.setStringBlock(value);
 	}
 
+	public List<String> getBlockParameters() {
+		List<String> params = new ArrayList<>(segments.size() * 2);
+
+		for(Segment s : segments)
+			for(Block b : s.getBlocks())
+				if(b.isBlockParam())
+					params.add(b.getBlockParameter().getParameter());
+
+		return params;
+	}
+
 
 	public boolean hasPathParameter() {
 		for (Segment s: segments)
