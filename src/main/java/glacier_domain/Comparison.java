@@ -1,0 +1,112 @@
+package glacier_domain;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Comparison implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 1L;
+	
+	private LeftTerm left;
+	private RightTerm right;
+	private Comparator comparator;
+	
+	public Comparison(LeftTerm left, RightTerm right, Comparator comparator) {
+		this.left = left;
+		this.right = right;
+		this.comparator = comparator;
+	}
+
+	public LeftTerm getLeftTerm() {
+		return left;
+	}
+
+	public RightTerm getRightTerm() {
+		return right;
+	}
+
+	/**
+	 * Replaces a comparison's term.
+	 * @param t       term to replace
+	 * @param isLeft  indicates what term needs to be replaced: true for the left term, false for the right term.
+	 */
+	public void setTerm(LeftTerm t, boolean isLeft) {
+		if (isLeft)
+			left = t;
+		else
+			right.setLeft(t);
+	}
+
+	public void setLeftTerm(LeftTerm t) {
+		left = t;
+	}
+
+	public void setRightTerm(LeftTerm t) {
+		right.setLeft(t);
+	}
+
+	public Comparator getComparator() {
+		return comparator;
+	}
+
+	public Url getLeftUrl() {
+		return left.getUrl();
+	}
+
+	public String getQueryParameterName() {
+		return left.getQueryParameterName() != null? left.getQueryParameterName() : right.getQueryParameterName();
+	}
+
+	public boolean hasResponseBody() {
+		return left.hasResponseBody() || right.hasResponseBody();
+	}
+
+	public boolean hasPathParameter() {
+		return left.hasPathParameter() || right.hasPathParameter();
+	}
+
+	public boolean hasQueryParameter() {
+		return left.hasQueryParameter() || right.hasQueryParameter();
+	}
+
+	public boolean hasThis() {
+		return left.hasThis() || right.hasThis();
+	}
+
+	public boolean hasPrevious() {
+		return left.hasPrevious() || right.hasPrevious();
+	}
+
+	public OperationPrevious getOperationPrevious () {
+		if (hasPrevious())
+			if (right.hasPrevious())
+				return right.getOperationPrevious();
+			else
+				return left.getOperationPrevious();
+
+		// something went terribly wrong
+		return null;
+	}
+
+	public void setStringParameter(String name, String value) {
+		// this is false
+		if (left.hasStringParameter())
+			left.setParam(name, value);
+		else if(right.hasStringParameter())
+			right.setParam(name, value);
+	}
+
+	public boolean hasComposedParameters() {
+		return left.hasComposedParameters() || right.hasComposedParameters();
+	}
+
+	public boolean hasUrlComposedParameters() {
+		return left.hasUrlComposedParameters() || right.hasUrlComposedParameters();
+	}
+
+	@Override
+	public String toString() {
+		return left.toString() + " " + comparator.toString() + " " + right.toString();
+	}
+}

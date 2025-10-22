@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.*;
-import parser.VisitorOrientedParser;
+import glacier_domain.*;
+import glacier_parser.VisitorOrientedParser;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
