@@ -123,6 +123,18 @@ public class DomainTests {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void test_right_null() {
+        Formula f = getFormula("response_code(GET /resources/{resource_id}) == 404)");
+        System.out.println(f.getBooleanExpression().getClause().getComparison().getRightTerm());
+    }
+
+    @Test
+    public void test_hasComposedParameters() {
+        Formula f = getFormula("response_code(GET /resources/request_body(this){param}) == 200");
+        assertTrue(f.hasComposedParameters());
+    }
+
     /**
      * Parser initialisation. Returns a parsed formula.
      * @param f string to be parsed as a formula
