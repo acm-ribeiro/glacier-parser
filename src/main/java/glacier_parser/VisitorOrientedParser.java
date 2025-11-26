@@ -193,12 +193,23 @@ public class VisitorOrientedParser {
         public static class ParamVisitor extends glacierBaseVisitor<Param> {
             @Override
             public Param visitParam(@NotNull glacierParser.ParamContext ctx) {
-                StringParamVisitor stringParamVisitor = new StringParamVisitor();
-                StringParam stringParam = ctx.stringParam() != null ? ctx.stringParam().accept(stringParamVisitor) : null;
+                Param p;
 
-                Integer intParam = ctx.INT() != null ? Integer.parseInt(ctx.getText()) : null;
+                if (ctx.INT() != null) {
+                    try {
+                        Integer intParam = Integer.parseInt(ctx.getText());
+                        p = new Param(null, intParam, null);
+                    } catch (NumberFormatException e) {
+                        Long longParam = Long.parseLong(ctx.getText());
+                        p = new Param(null, null, longParam);
+                    }
+                } else {
+                    StringParamVisitor stringParamVisitor = new StringParamVisitor();
+                    StringParam stringParam = ctx.stringParam() != null ? ctx.stringParam().accept(stringParamVisitor) : null;
+                    p = new Param(stringParam, null, null);
+                }
 
-                return new Param(stringParam, intParam);
+                return p;
             }
         }
 

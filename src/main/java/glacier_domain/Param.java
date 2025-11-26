@@ -10,12 +10,18 @@ public class Param implements Serializable {
 	
 	private StringParam stringParam;
 	private Integer intParam;
+	private Long longParam;
 
-	public Param(StringParam stringParam, Integer intParam) {
+	public Param(StringParam stringParam, Integer intParam, Long longParam) {
 		this.stringParam = stringParam;
 		this.intParam = intParam;
+		this.longParam = longParam;
 	}
-	
+
+	public Long getLongParam() {
+		return longParam;
+	}
+
 	public StringParam getStringParam() {
 		return stringParam;
 	}
