@@ -81,7 +81,7 @@ public class LeftTerm implements Serializable {
      * @param value the correct parameter value.
      */
     public void replaceCallForParameter(String value) {
-        param = new Param(new StringParam(value), null);
+        param = new Param(new StringParam(value), null, null);
         call = null;
         hasCurls = false;
     }
@@ -95,7 +95,7 @@ public class LeftTerm implements Serializable {
      */
     public void setParam(String name, String value) {
         if (param != null && param.isStringParameter() && param.getStringParam().getParam().contains(name)) {
-            param = new Param(new StringParam(value), null);
+            param = new Param(new StringParam(value), null, null);
             call = null;
             hasCurls = false;
         }
