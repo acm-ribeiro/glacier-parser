@@ -161,7 +161,6 @@ public class VisitorOrientedParser {
         public static class RightTermVisitor extends glacierBaseVisitor<RightTerm> {
             @Override
             public RightTerm visitRightTerm(@NotNull glacierParser.RightTermContext ctx) {
-
                 LeftTermVisitor leftTermVisitor = new LeftTermVisitor();
                 LeftTerm leftTerm = ctx.leftTerm() != null ? ctx.leftTerm().accept(leftTermVisitor) : null;
 

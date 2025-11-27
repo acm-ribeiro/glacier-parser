@@ -4,47 +4,54 @@ import java.io.Serial;
 import java.io.Serializable;
 
 public class Param implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	@Serial
-	private static final long serialVersionUID = 1L;
-	
-	private StringParam stringParam;
-	private Integer intParam;
-	private Long longParam;
+    private StringParam stringParam;
 
-	public Param(StringParam stringParam, Integer intParam, Long longParam) {
-		this.stringParam = stringParam;
-		this.intParam = intParam;
-		this.longParam = longParam;
-	}
+    private Integer intParam;
 
-	public Long getLongParam() {
-		return longParam;
-	}
+    private Long longParam;
 
-	public StringParam getStringParam() {
-		return stringParam;
-	}
+    public Param(StringParam stringParam, Integer intParam, Long longParam) {
+        this.stringParam = stringParam;
+        this.intParam = intParam;
+        this.longParam = longParam;
+    }
 
-	public String getStringParameterName() {
-		return stringParam != null ? stringParam.getParameterName() : null;
-	}
+    public Long getLongParam() {
+        return longParam;
+    }
 
-	public boolean isStringParameter() {
-		return stringParam != null;
-	}
+    public StringParam getStringParam() {
+        return stringParam;
+    }
 
-	public void setStringParam (String value) {
-		stringParam.setParam(value);
-		intParam = null;
-	}
+    public String getStringParameterName() {
+        return stringParam != null ? stringParam.getParameterName() : null;
+    }
 
-	public Integer getIntParam() {
-		return intParam;
-	}
+    public boolean isStringParameter() {
+        return stringParam != null;
+    }
 
-	@Override
-	public String toString() {
-		return stringParam != null? stringParam.toString() : String.valueOf(intParam);
-	}
+    public void setStringParam(String value) {
+        stringParam.setParam(value);
+        intParam = null;
+    }
+
+    public Integer getIntParam() {
+        return intParam;
+    }
+
+    @Override
+    public String toString() {
+        if (intParam != null) {
+            return String.valueOf(intParam);
+        } else if (longParam != null) {
+			return String.valueOf(longParam);
+		} else {
+			return stringParam.toString();
+		}
+    }
 }

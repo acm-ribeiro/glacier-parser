@@ -135,6 +135,12 @@ public class DomainTests {
         assertTrue(f.hasComposedParameters());
     }
 
+    @Test
+    public void test_longParameter() {
+        Formula f = getFormula("for e in response_body(GET /enrollments) :- 6600952142679353390 == {e.tid} || 255872661 != {e.pid}");
+        System.out.println(f);
+    }
+
     /**
      * Parser initialisation. Returns a parsed formula.
      * @param f string to be parsed as a formula
