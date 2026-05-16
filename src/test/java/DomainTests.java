@@ -12,6 +12,17 @@ import static org.junit.Assert.assertTrue;
 public class DomainTests {
 
     @Test
+    public void triple_nested_quantified() {
+        Formula f1 = getFormula("for t in response_body(GET /tournaments) : "
+            + "for pid in response_body(GET /tournaments/{t.tid}/players) : "
+            + "exists e in response_body(GET /enrollments) :- e.pid == pid && e.tid == t.tid");
+
+        assertTrue(f1.hasNested());
+        assertEquals(f1.toString(), "for t in response_body(GET /tournaments) : for pid in response_body(GET /tournaments/{t"
+            + ".tid}/players) : exists e in response_body(GET /enrollments) :- e.pid == pid && e.tid == t.tid");
+    }
+
+    @Test
     public void test_url_constructor_one_id() {
         String expected = "/resources/{resource_id}";
         String actual = new Url(expected).toString();
@@ -37,6 +48,24 @@ public class DomainTests {
 
         String expected = "for a in response_body(GET /as) : exists b in response_body(GET /as/1/bs) :- " +
                 "request_body(this){name} != {b.name}";
+        String actual = quantifiedFormula.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_set_collection_url_parameter_value_triple(){
+        Formula f = getFormula("for t in response_body(GET /tournaments) : "
+            + "for pid in response_body(GET /tournaments/{t.tid}/players) : "
+            + "exists e in response_body(GET /enrollments) :- e.pid == pid && e.tid == t.tid");
+
+        QuantifiedFormula quantifiedFormula = f.getQuantifiedFormula();
+        quantifiedFormula.setCollectionUrlParameterValue("tid", "1");
+
+        String expected = "for t in response_body(GET /tournaments) : "
+            + "for pid in response_body(GET /tournaments/1/players) : "
+            + "exists e in response_body(GET /enrollments) :- e.pid == pid && e.tid == t.tid";
+
         String actual = quantifiedFormula.toString();
 
         assertEquals(expected, actual);

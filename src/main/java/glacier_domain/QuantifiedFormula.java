@@ -59,10 +59,15 @@ public class QuantifiedFormula implements Serializable {
 	}
 
 	public void setCollectionUrlParameterValue(String name, String value) {
+		// Checking for replaceable URL parameters in the outter formula (recursive call, it can be
+		// inner of another)
+		if (variables.hasBlockParameters())
+			variables.setCollectionUrlParameterValue(name, value);
+
 		if(quantifiedFormula != null)
 			quantifiedFormula.setCollectionUrlParameterValue(name, value);
-		else
-			variables.setCollectionUrlParameterValue(name, value);
+//		else
+//			variables.setCollectionUrlParameterValue(name, value);
 	}
 
 	public void setNestedCollectionUrl(String collectionUrl) {

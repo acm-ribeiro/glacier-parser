@@ -17,6 +17,10 @@ public class Variables implements Serializable {
 		this.call = call;
 		this.vars = vars;
 	}
+
+	public boolean hasBlockParameters(){
+		return call != null ? call.hasBlockParameter() : false;
+	}
 	
 	public String getVarId() {
 		return varId;
