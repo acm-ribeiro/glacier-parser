@@ -61,8 +61,8 @@ public class Call implements Serializable {
 		return operation != null? operation.getUrl() : operationPrevious.getUrl();
 	}
 
-	public String getCollectionUrlParameterName() {
-		return operation != null? operation.getUrlParameterName() : operationPrevious.getUrlParameterName();
+	public String getCollectionUrlParameterName(boolean full) {
+		return operation != null? operation.getUrlParameterName(full) : operationPrevious.getUrlParameterName(full);
 	}
 
 	public int getPathParameterIndex() {

@@ -71,8 +71,8 @@ public class Operation implements Serializable {
 		return parameter != null? parameter.getUrl() : null;
 	}
 
-	public String getUrlParameterName() {
-		return parameter != null? parameter.getCollectionUrlParameterName() : null;
+	public String getUrlParameterName(boolean full) {
+		return parameter != null? parameter.getCollectionUrlParameterName(full) : null;
 	}
 
 	public int getPathParameterIndex() {

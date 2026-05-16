@@ -65,11 +65,11 @@ public class Variables implements Serializable {
 	}
 
 
-	public String getCollectionUrlParameterName() {
+	public String getCollectionUrlParameterName(boolean full) {
 		if (vars != null)
-			return vars.getCollectionUrlParameterName();
+			return vars.getCollectionUrlParameterName(full);
 		else
-			return call.getCollectionUrlParameterName();
+			return call.getCollectionUrlParameterName(full);
 	}
 
 

@@ -38,8 +38,8 @@ public class OperationPrevious implements Serializable {
 		return operation.getUrl();
 	}
 
-	public String getUrlParameterName() {
-		return operation.getUrlParameterName();
+	public String getUrlParameterName(boolean full) {
+		return operation.getUrlParameterName(full);
 	}
 
 	public int getPathParameterIndex() {

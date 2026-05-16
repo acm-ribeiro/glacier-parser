@@ -46,8 +46,8 @@ public class QuantifiedFormula implements Serializable {
 		return variables.getCollectionUrl();
 	}
 
-	public String getCollectionUrlParameterName() {
-		return variables.getCollectionUrlParameterName();
+	public String getCollectionUrlParameterName(boolean full) {
+		return variables.getCollectionUrlParameterName(full);
 	}
 
 	public void setBooleanExpression(BooleanExpression exp) {

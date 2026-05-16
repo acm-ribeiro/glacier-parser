@@ -59,8 +59,8 @@ public class OperationParameter implements Serializable {
 		return request != null ? request.getUrl().toString() : null;
 	}
 
-	public String getCollectionUrlParameterName() {
-		return request != null? request.getUrl().getCollectionUrlParameterName() : null;
+	public String getCollectionUrlParameterName(boolean full) {
+		return request != null? request.getUrl().getCollectionUrlParameterName(full) : null;
 	}
 
 

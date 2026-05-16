@@ -85,13 +85,13 @@ public class Url implements Serializable {
 	}
 
 
-	public String getCollectionUrlParameterName() {
+	public String getCollectionUrlParameterName(boolean full) {
 		for (Segment s: segments)
 			for (Block b: s.getBlocks())
 				if (b.isBlockParam())
 					if (b.getBlockParameter().toString().contains(".")) {
 						String no_curly = b.getBlockParameter().toString().replace("{", "").replace("}", "");
-						return no_curly.split("\\.")[1];
+						return full? no_curly : no_curly.split("\\.")[1];
 					} else
 						return b.getBlockParameter().getParameter();
 
