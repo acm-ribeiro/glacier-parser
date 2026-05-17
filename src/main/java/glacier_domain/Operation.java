@@ -1,168 +1,194 @@
 package glacier_domain;
 
-
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Operation implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	@Serial
-	private static final long serialVersionUID = 1L;
-	
-	private OperationHeader header;
-	private OperationParameter parameter;
-	private OperationSuffix suffix;
-	private PathParam pathParam;
-	private QueryParam queryParam;
+    private OperationHeader header;
 
-	public Operation(OperationHeader header, OperationParameter parameter, OperationSuffix suffix, PathParam pathParam, QueryParam queryParam) {
-		this.header = header;
-		this.parameter = parameter;
-		this.suffix = suffix;
-		this.pathParam = pathParam;
-		this.queryParam = queryParam;
-	}
+    private OperationParameter parameter;
 
+    private OperationSuffix suffix;
 
-	public OperationHeader getHeader() {
-		return header;
-	}
+    private PathParam pathParam;
 
-	public void setOperationParameter(OperationParameter parameter) {
-		this.parameter = parameter;
-	}
+    private QueryParam queryParam;
 
-	public void setUrlParameterValue(String name, String value) {
-		if (parameter != null && !parameter.isThis())
+    public Operation(OperationHeader header, OperationParameter parameter, OperationSuffix suffix, PathParam pathParam,
+        QueryParam queryParam) {
+        this.header = header;
+        this.parameter = parameter;
+        this.suffix = suffix;
+        this.pathParam = pathParam;
+        this.queryParam = queryParam;
+    }
+
+    public OperationHeader getHeader() {
+        return header;
+    }
+
+    public void setOperationParameter(OperationParameter parameter) {
+        this.parameter = parameter;
+    }
+
+    public void setUrlParameterValue(String name, String value) {
+		if (parameter != null && !parameter.isThis()) {
 			parameter.setCollectionUrlParameterValue(name, value);
-	}
+		}
+    }
 
-	public void setUrl(String url) {
-		if (parameter != null && !parameter.isThis())
+    public void setUrl(String url) {
+		if (parameter != null && !parameter.isThis()) {
 			parameter.setUrl(url);
-	}
+		}
+    }
 
-	public OperationParameter getParameter() {
-		return parameter;
-	}
+    public OperationParameter getParameter() {
+        return parameter;
+    }
 
-	public OperationSuffix getSuffix() {
-		return suffix;
-	}
+    public OperationSuffix getSuffix() {
+        return suffix;
+    }
 
-	public String getQueryParameterName() {
-		return queryParam.getParameterName();
-	}
+    public String getQueryParameterName() {
+        return queryParam.getParameterName();
+    }
 
-	public String getComposedParameterName() {
-		if(hasComposedParameters())
-			return suffix.getStringParam().getParam();
-		else if (hasUrlComposedParameters())
-			return parameter.getUrlComposedParameterName();
-		else
-			return null;
-	}
+    /**
+     * Returns all composed parameter names found in the URL segments, e.g. {tid}, {pid} from response_body(this){tid}
+     * and response_body(this){pid}.
+     */
+    public List<String> getAllUrlComposedParameterNames() {
+        List<String> names = new ArrayList<>();
 
-	public String getUrlQueryParameterName() {
-		return isQueryParam()? queryParam.getParameterName() : parameter.getUrlQueryParameterName();
-	}
+		if (parameter == null || parameter.isThis()) {
+			return names;
+		}
 
-	public String getUrl() {
-		return parameter != null? parameter.getUrl() : null;
-	}
+        List<Segment> segments = parameter.getRequest().getUrl().getSegments();
 
-	public String getUrlParameterName(boolean full) {
-		return parameter != null? parameter.getCollectionUrlParameterName(full) : null;
-	}
+		for (Segment seg : segments) {
+			for (Block block : seg.getBlocks()) {
+				if (block.isOperation()) {
+					Operation embeddedOp = block.getOperation();
+					if (embeddedOp.hasComposedParameters()) {
+						names.add(embeddedOp.getSuffix().getStringParam().getParam());
+					}
+				}
+			}
+		}
 
-	public int getPathParameterIndex() {
-		return isPathParam()? pathParam.getNum() : parameter.getPathParameterIndex();
-	}
+        return names;
+    }
 
-	public PathParam getPathParam () {
-		return pathParam;
-	}
+    public String getUrlQueryParameterName() {
+        return isQueryParam() ? queryParam.getParameterName() : parameter.getUrlQueryParameterName();
+    }
 
-	public HTTPRequest getHTTPRequest() {
-		return parameter != null && !parameter.isThis()? parameter.getRequest() : null;
-	}
+    public String getUrl() {
+        return parameter != null ? parameter.getUrl() : null;
+    }
 
-	public boolean isPathParam() {
-		return pathParam != null;
-	}
+    public String getUrlParameterName(boolean full) {
+        return parameter != null ? parameter.getCollectionUrlParameterName(full) : null;
+    }
 
-	public boolean hasUrlRequestBodyComposed() {
-		return parameter != null && parameter.hasUrlRequestBody();
-	}
+    public int getPathParameterIndex() {
+        return isPathParam() ? pathParam.getNum() : parameter.getPathParameterIndex();
+    }
 
-	public boolean hasUrlResponseBodyComposed() {
-		return parameter != null && parameter.hasUrlResponseBody();
-	}
+    public PathParam getPathParam() {
+        return pathParam;
+    }
 
-	public boolean hasUrlComposedParameters() {
-		return hasUrlRequestBodyComposed() || hasUrlResponseBodyComposed();
-	}
+    public HTTPRequest getHTTPRequest() {
+        return parameter != null && !parameter.isThis() ? parameter.getRequest() : null;
+    }
 
-	public boolean hasUrlPathParam() {
-		if (parameter != null)
+    public boolean isPathParam() {
+        return pathParam != null;
+    }
+
+    public boolean hasUrlRequestBodyComposed() {
+        return parameter != null && parameter.hasUrlRequestBody();
+    }
+
+    public boolean hasUrlResponseBodyComposed() {
+        return parameter != null && parameter.hasUrlResponseBody();
+    }
+
+    public boolean hasUrlComposedParameters() {
+        return hasUrlRequestBodyComposed() || hasUrlResponseBodyComposed();
+    }
+
+    public boolean hasUrlPathParam() {
+		if (parameter != null) {
 			return !parameter.isThis() && parameter.getRequest().getUrl().hasPathParameter();
-		else
+		} else {
 			return false;
-	}
+		}
+    }
 
-	public boolean hasUrlQueryParam() {
-		if (parameter != null)
+    public boolean hasUrlQueryParam() {
+		if (parameter != null) {
 			return !parameter.isThis() && parameter.getRequest().getUrl().hasQueryParameter();
-		else
+		} else {
 			return false;
-	}
+		}
+    }
 
-	public boolean hasBlockParameter() {
-		if(parameter != null)
+    public boolean hasBlockParameter() {
+		if (parameter != null) {
 			return !parameter.isThis() && parameter.getRequest().hasBlockParameter();
-		else
+		} else {
 			return false;
-	}
+		}
+    }
 
-	public boolean hasThis() {
-		return parameter != null && parameter.isThis();
-	}
+    public boolean hasThis() {
+        return parameter != null && parameter.isThis();
+    }
 
-	public boolean isQueryParam() {
-		return queryParam != null;
-	}
+    public boolean isQueryParam() {
+        return queryParam != null;
+    }
 
-	public boolean isRequestBody() {
-		return header != null && header.isRequestBody();
-	}
+    public boolean isRequestBody() {
+        return header != null && header.isRequestBody();
+    }
 
-	public boolean isResponseBody() {
-		return header != null && header.isResponseBody();
-	}
+    public boolean isResponseBody() {
+        return header != null && header.isResponseBody();
+    }
 
-	public boolean isResponseCode() {
-		return header != null && header.isResponseCode();
-	}
+    public boolean isResponseCode() {
+        return header != null && header.isResponseCode();
+    }
 
-	public boolean hasComposedParameters() {
-		return suffix != null && suffix.isStringParam();
-	}
+    public boolean hasComposedParameters() {
+        return suffix != null && suffix.isStringParam();
+    }
 
-	public QueryParam getQueryParam() {
-		return queryParam;
-	}
-	
+    public QueryParam getQueryParam() {
+        return queryParam;
+    }
 
-	@Override
-	public String toString() {
-		String s = suffix != null? suffix.toString() : "";
+    @Override
+    public String toString() {
+        String s = suffix != null ? suffix.toString() : "";
 
-		if (pathParam != null)
+		if (pathParam != null) {
 			return pathParam.toString();
-		else if (queryParam != null)
+		} else if (queryParam != null) {
 			return queryParam.toString();
-		else
+		} else {
 			return header.getID() + "(" + parameter.toString() + ")" + s;
-	}
-
+		}
+    }
 }
