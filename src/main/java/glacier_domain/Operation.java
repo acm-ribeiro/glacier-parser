@@ -87,6 +87,17 @@ public class Operation implements Serializable {
         return names;
     }
 
+    public List<String> getComposedParameterName() {
+        if(hasComposedParameters()){
+            List<String> param = new ArrayList<>();
+            param.add(suffix.getStringParam().getParam());
+            return param;
+        } else if (hasUrlComposedParameters())
+            return parameter.getUrlComposedParameterName();
+        else
+            return null;
+    }
+
     public String getUrlQueryParameterName() {
         return isQueryParam() ? queryParam.getParameterName() : parameter.getUrlQueryParameterName();
     }

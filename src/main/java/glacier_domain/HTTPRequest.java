@@ -2,6 +2,7 @@ package glacier_domain;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 public class HTTPRequest implements Serializable {
 
@@ -45,7 +46,7 @@ public class HTTPRequest implements Serializable {
 		return url.getUrlQueryParameterName();
 	}
 
-	public String getUrlComposedParameterName() {
+	public List<String> getUrlComposedParameterName() {
 		return url.getComposedParameterName();
 	}
 

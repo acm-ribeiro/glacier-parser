@@ -98,11 +98,11 @@ public class Url implements Serializable {
 		return null;
 	}
 
-	public String getComposedParameterName() {
+	public List<String> getComposedParameterName() {
 		for (Segment s: segments)
 			for (Block b: s.getBlocks())
 				if(b.isOperation() && b.getOperation().hasComposedParameters())
-					return b.getOperation().getComposedParameterName();
+					return b.getOperation().getAllUrlComposedParameterNames();
 
 		return null;
 	}
@@ -111,16 +111,18 @@ public class Url implements Serializable {
 		for (Segment s: segments)
 			for (Block b: s.getBlocks())
 				if(b.isOperation() && b.getOperation().isRequestBody())
-					if (b.getOperation().getComposedParameterName().equalsIgnoreCase(name))
-						b.setStringBlock(value);
+					for(String param : b.getOperation().getAllUrlComposedParameterNames())
+						if (param.equalsIgnoreCase(name))
+							b.setStringBlock(value);
 	}
 
 	public void updateResponseBodyBlock(String name, String value) {
 		for (Segment s: segments)
 			for (Block b: s.getBlocks())
 				if(b.isOperation() && b.getOperation().isResponseBody())
-					if (b.getOperation().getComposedParameterName().equalsIgnoreCase(name))
-						b.setStringBlock(value);
+					for(String param : b.getOperation().getAllUrlComposedParameterNames())
+						if (param.equalsIgnoreCase(name))
+							b.setStringBlock(value);
 	}
 
 
