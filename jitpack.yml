@@ -1,7 +1,7 @@
 jdk:
-  - openjdk19
+  - openjdk21
 
 before_install:
-  - sdk install java 18.0.1.1-open
-  - sdk use java 18.0.1.1-open
+  - sdk install java 21.0.1-open
+  - sdk use java 21.0.1-open
   - mvn wrapper:wrapper -Dmaven=3.6.3
