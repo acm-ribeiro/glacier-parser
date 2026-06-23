@@ -36,6 +36,16 @@ public class VisitorOrientedParser {
             BooleanExpressionVisitor booleanExpressionVisitor = new BooleanExpressionVisitor();
             BooleanExpression booleanExpression = ctx.booleanExpression() != null ? ctx.booleanExpression().accept(booleanExpressionVisitor) : null;
 
+            // Handle bare T/F at the top level
+            if (quantifiedFormula == null && booleanExpression == null) {
+                String text = ctx.getText().trim();
+                if (text.equals("T") || text.equals("F")) {
+                    BooleanValue booleanValue = new BooleanValue(text);
+                    Clause clause = new Clause(booleanValue, null);
+                    booleanExpression = new BooleanExpression(clause, null, null, null);
+                }
+            }
+
             return new Formula(quantifiedFormula, booleanExpression);
         }
 

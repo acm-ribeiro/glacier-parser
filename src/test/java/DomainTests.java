@@ -12,6 +12,12 @@ import static org.junit.Assert.assertTrue;
 public class DomainTests {
 
     @Test
+    public void simple_T() {
+        Formula f = getFormula("T");
+        assertEquals("T", f.toString());
+    }
+
+    @Test
     public void triple_nested_quantified() {
         Formula f1 = getFormula("for t in response_body(GET /tournaments) : "
             + "for pid in response_body(GET /tournaments/{t.tid}/players) : "

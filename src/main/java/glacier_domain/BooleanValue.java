@@ -22,6 +22,6 @@ public class BooleanValue implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.valueOf(value);
+		return value? "T" : "F";
 	}
 }
