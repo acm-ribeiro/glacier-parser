@@ -43,6 +43,8 @@ public class VisitorOrientedParser {
                     BooleanValue booleanValue = new BooleanValue(text);
                     Clause clause = new Clause(booleanValue, null);
                     booleanExpression = new BooleanExpression(clause, null, null, null);
+                } else {
+                    return null;
                 }
             }
 
