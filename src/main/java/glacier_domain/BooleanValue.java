@@ -19,7 +19,7 @@ public class BooleanValue implements Serializable {
 		return value;
 	}
 
-
+	//
 	@Override
 	public String toString() {
 		return value? "T" : "F";
